@@ -41,16 +41,19 @@ export const MainView = () => {
   }
 
   return (
-    <div>
-      {books.map((book) => (
-        <BookCard
-          key={book.id}
-          book={book}
-          onBookClick={(newSelectedBook) => {
-            setSelectedBook(newSelectedBook);
-          }}
-        />
-      ))}
-    </div>
+    <>
+      <div>
+        {books.map((book) => (
+          <BookCard
+            key={book.id}
+            book={book}
+            onBookClick={(newSelectedBook) => {
+              setSelectedBook(newSelectedBook);
+            }}
+          />
+        ))}
+      </div>
+      <button onClick={() => { setUser(null); }}>Logout</button>
+    </>
   );
 };
