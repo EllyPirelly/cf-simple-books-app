@@ -13,7 +13,7 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         // console.log("books from api: ", data);
-        const booksFromAPI = data.docs.map((doc) => {
+        const booksFromApi = data.docs.map((doc) => {
           return {
             id: doc.key,
             title: doc.title,
@@ -22,12 +22,12 @@ export const MainView = () => {
           };
         });
 
-        setBooks(booksFromAPI);
+        setBooks(booksFromApi);
       });
   }, []);
 
   if (!user) {
-    return <LoginView />;
+    return <LoginView onLoggedIn={(user) => setUser(user)} />;
   }
 
   if (selectedBook) {
@@ -37,7 +37,7 @@ export const MainView = () => {
   }
 
   if (books.length === 0) {
-    return <div>The list is empty.</div>;
+    return <div>The list is empty!</div>;
   }
 
   return (
