@@ -10,7 +10,17 @@ export const MainView = () => {
     fetch("https://openlibrary.org/search.json?q=the+lord+of+the+rings")
       .then((response) => response.json())
       .then((data) => {
-        console.log("books from api: ", data);
+        // console.log("books from api: ", data);
+        const booksFromAPI = data.docs.map((doc) => {
+          return {
+            id: doc.key,
+            title: doc.title,
+            image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
+            author: doc.author_name?.[0]
+          };
+        });
+
+        setBooks(booksFromAPI);
       });
   }, []);
 
