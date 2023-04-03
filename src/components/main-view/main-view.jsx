@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { BookCard } from "../book-card/book-card";
 import { BookView } from "../book-view/book-view";
 import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
   const [books, setBooks] = useState([]);
@@ -27,7 +28,20 @@ export const MainView = () => {
   }, []);
 
   if (!user) {
-    return <LoginView onLoggedIn={(user) => setUser(user)} />;
+    return (
+      <>
+        <div>
+          <h3>Login View - working</h3>
+          <LoginView onLoggedIn={(user) => setUser(user)} />
+        </div>
+
+        <div>
+          <h3>Signup View - not working</h3>
+          <p>Open Library does NOT (!) have a sign up endpoint - only for practicing purposes.</p>
+          <SignupView />
+        </div>
+      </>
+    )
   }
 
   if (selectedBook) {
